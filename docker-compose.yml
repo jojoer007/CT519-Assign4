@@ -1,0 +1,12 @@
+services:
+  container1:
+    build: ./Container1 
+    ports:
+      - "8000:80"
+
+  container2:
+    image: nginx
+    volumes:
+      - ./Container2/:/usr/share/nginx/html
+    ports:
+      - "80:80"
