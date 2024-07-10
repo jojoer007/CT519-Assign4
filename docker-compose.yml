@@ -2,6 +2,7 @@
 services:
   reverse_proxy:
     image: nginx:alpine
+    container_name: reverse_proxy
     ports:
       - "80:80"
     volumes:
@@ -12,6 +13,7 @@ services:
 
   container1:
     build: ./Container1 
+    container_name: container1
     ports:
       - "8000:80"
     networks:
@@ -19,6 +21,7 @@ services:
 
   container2:
     image: nginx:alpine
+    container_name: container2
     volumes:
       - ./Container2:/usr/share/nginx/html
     ports:
