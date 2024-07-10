@@ -1,12 +1,33 @@
+
 services:
+  reverse_proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - frontend
+      - backend
+
   container1:
     build: ./Container1 
     ports:
       - "8000:80"
+    networks:
+      - backend
 
   container2:
-    image: nginx
+    image: nginx:alpine
     volumes:
-      - ./Container2/:/usr/share/nginx/html
+      - ./Container2:/usr/share/nginx/html
     ports:
       - "80:80"
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
