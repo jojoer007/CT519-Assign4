@@ -3,7 +3,7 @@ services:
   reverse_proxy:
     image: nginx:alpine
     ports:
-      - "8001:80"
+      - "80:80"
     volumes:
       - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./Container2:/usr/share/nginx/html
     ports:
-      - "80:80"
+      - "8001:80"
     networks:
       - backend
 
